@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views import View
+from django.views.generic.list import ListView
 from feedparser import parse
 
 from home.forms import SiteForm
@@ -19,7 +20,14 @@ class Index(View):
             site = form.save()
             site.save()
 
-        return redirect('index')
+        return redirect('sites')
+
+
+class ListSites(ListView):
+    model = Site
+    queryset = Site.objects.all()
+    template_name = 'home/sites.html'
+    context_object_name = 'sites'
 
 
 def get_rss_fedd(url):

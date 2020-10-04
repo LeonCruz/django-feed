@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1>Feeds</h1>
+    <ul>
+        <li>
+            <a href="{% url 'sites' %}">Seus Sites</a>
+        </li>
+    </ul>
     <form action="{% url 'index' %}" method="POST">
         {{ form.as_p }}
         <button type="submit">Enviar</button>
