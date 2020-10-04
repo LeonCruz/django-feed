@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <h2>{{ name }}</h2>
+    <ul>
+        {% for title, link in feed %}
+            <li>
+                <a href="{{ link }}" target="_blank">
+                    {{ title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

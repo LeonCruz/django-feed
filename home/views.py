@@ -30,6 +30,17 @@ class ListSites(ListView):
     context_object_name = 'sites'
 
 
+def feed_site(request, site_id):
+    site = Site.objects.get(id=site_id)
+
+    feed = get_rss_fedd(site.rss_site)
+
+    return render(request, 'home/site_feed.html', {
+        'feed': feed,
+        'name': site.name
+    })
+
+
 def get_rss_fedd(url):
     feed = parse(url)
     entries = feed['entries']

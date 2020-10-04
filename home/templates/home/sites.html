@@ -9,7 +9,7 @@
     <ul>
         {% for site in sites %}
             <li>
-                <a href="{{ site.rss_site }}">
+                <a href="{% url 'feed-site' site.id %}">
                     {{ site.name }}
                 </a>
             </li>
