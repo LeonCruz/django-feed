@@ -2,17 +2,24 @@ from django.shortcuts import redirect, render
 from django.views import View
 from feedparser import parse
 
+from home.forms import SiteForm
+from home.models import Site
+
 
 # Create your views here.
 class Index(View):
     def get(self, request):
-        return render(request, 'home/index.html')
+        form = SiteForm()
+        return render(request, 'home/index.html', {'form': form})
 
     def post(self, request):
-        rss_site = request.POST['rss_site']
-        data = get_rss_fedd(rss_site)
+        form = SiteForm(request.POST)
 
-        return render(request, 'home/index.html', {'data': data})
+        if form.is_valid():
+            site = form.save()
+            site.save()
+
+        return redirect('index')
 
 
 def get_rss_fedd(url):

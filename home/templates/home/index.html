@@ -3,10 +3,7 @@
 {% block content %}
     <h1>Feeds</h1>
     <form action="{% url 'index' %}" method="POST">
-        <label for="url_site">
-            RSS do site:
-        </label>
-        <input type="text" name="rss_site">
+        {{ form.as_p }}
         <button type="submit">Enviar</button>
         {% csrf_token %}
     </form>
