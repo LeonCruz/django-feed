@@ -6,17 +6,8 @@
         <li>
             <a href="{% url 'sites' %}">Seus Sites</a>
         </li>
+        <li>
+            <a href="{% url 'add-site' %}">Adicionar um Site</a>
+        </li>
     </ul>
-    <form action="{% url 'index' %}" method="POST">
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-        {% csrf_token %}
-    </form>
-    {% if data %}
-        {% for title, link in data %}
-            <p>
-                <a href="{{ link }}">{{ title }}</a>
-            </p>
-        {% endfor %}
-    {% endif %}
 {% endblock %}

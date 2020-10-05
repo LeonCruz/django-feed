@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <h1>Adicionar Novo Site</h1>
+    <ul>
+        <li>
+            <a href="{% url 'sites' %}">Seus Sites</a>
+        </li>
+        <li>
+            <a href="{% url 'index' %}">Página Inicial</a>
+        </li>
+    </ul>
+    <form action="{% url 'index' %}" method="POST">
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+        {% csrf_token %}
+    </form>
+    {% if data %}
+        {% for title, link in data %}
+            <p>
+                <a href="{{ link }}">{{ title }}</a>
+            </p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

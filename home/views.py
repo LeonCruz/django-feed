@@ -41,6 +41,21 @@ def feed_site(request, site_id):
     })
 
 
+class AddNewSite(View):
+    def get(self, request):
+        form = SiteForm()
+        return render(request, 'home/new_site.html', {'form': form})
+
+    def post(self, request):
+        form = SiteForm(request.POST)
+
+        if form.is_valid():
+            site = form.save()
+            site.save()
+
+        return redirect('sites')
+
+
 def get_rss_fedd(url):
     feed = parse(url)
     entries = feed['entries']
